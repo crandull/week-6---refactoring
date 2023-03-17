@@ -17,17 +17,22 @@ function setup() {
 
 function draw() {
   background(0);
+
+  //draw pink rectangle - street
   fill(255, 0, 175);
   rect(0, 287, 600, 30);
 
-  //draw the skateboard & wheels
+  drawSkateboard();
+
+  moveLeft();
+  moveRight();
+}
+
+function drawSkateboard() {
   fill(0, 255, 0);
   circle(wheel1x, 276, 15);
   circle(wheel2x, 276, 15);
   rect(rectx, 260, 80, 10);
-
-  moveLeft();
-  moveRight();
 }
 
 //WHEN MOUSE HOVERS OVER LEFT ARROW, MOVE LEFT
@@ -38,19 +43,9 @@ function moveLeft() {
     wheel2x -= offset;
     rectx -= offset;
 
-    //change color of left button
-    fill(255, 0, 175);
-    rect(200, 30, 100, 60);
-    fill(0);
-    triangle(222, 60, 244, 47, 244, 76);
-    rect(244, 56, 25, 10);
+    PinkButtonLeft();
   } else {
-    //button left
-    fill(234, 255, 0);
-    rect(200, 30, 100, 60);
-    fill(0);
-    triangle(222, 60, 244, 47, 244, 76);
-    rect(244, 56, 25, 10);
+    YellowButtonLeft();
   }
 }
 
@@ -62,19 +57,41 @@ function moveRight() {
     wheel2x += offset;
     rectx += offset;
 
-    //change color of right button
-    fill(255, 0, 175);
-    rect(300, 30, 100, 60);
-    fill(0);
-    triangle(374, 60, 356, 47, 356, 76);
-    rect(331, 56, 25, 10);
+    PinkButtonRight();
   } else {
-    //button right
-    fill(234, 255, 0);
-    rect(300, 30, 100, 60);
-
-    fill(0);
-    triangle(374, 60, 356, 47, 356, 76);
-    rect(331, 56, 25, 10);
+    YellowButtonRight();
   }
+}
+
+function PinkButtonLeft() {
+  fill(255, 0, 175);
+  rect(200, 30, 100, 60);
+  fill(0);
+  triangle(222, 60, 244, 47, 244, 76);
+  rect(244, 56, 25, 10);
+}
+
+function YellowButtonLeft() {
+  fill(234, 255, 0);
+  rect(200, 30, 100, 60);
+  fill(0);
+  triangle(222, 60, 244, 47, 244, 76);
+  rect(244, 56, 25, 10);
+}
+
+function PinkButtonRight() {
+  fill(255, 0, 175);
+  rect(300, 30, 100, 60);
+  fill(0);
+  triangle(374, 60, 356, 47, 356, 76);
+  rect(331, 56, 25, 10);
+}
+
+function YellowButtonRight() {
+  fill(234, 255, 0);
+  rect(300, 30, 100, 60);
+
+  fill(0);
+  triangle(374, 60, 356, 47, 356, 76);
+  rect(331, 56, 25, 10);
 }
