@@ -7,9 +7,10 @@ let wheel2x_2 = rectx + 70;
 
 let offset = 2;
 
-function mousePressed() {
-  console.log(mouseX, mouseY);
-}
+let yellow;
+let pink;
+let leftButtonColor;
+let rightButtonColor;
 
 function setup() {
   createCanvas(600, 310);
@@ -17,15 +18,20 @@ function setup() {
 
 function draw() {
   background(0);
+  pink = color(255, 0, 175);
+  yellow = color(234, 255, 0);
+  leftButtonColor = yellow;
+  rightButtonColor = yellow;
 
   //draw pink rectangle - street
   fill(255, 0, 175);
   rect(0, 287, 600, 30);
 
-  drawSkateboard();
-
   moveLeft();
   moveRight();
+  drawLeftButton();
+  drawRightButton();
+  drawSkateboard();
 }
 
 function drawSkateboard() {
@@ -38,59 +44,48 @@ function drawSkateboard() {
 //WHEN MOUSE HOVERS OVER LEFT ARROW, MOVE LEFT
 function moveLeft() {
   if (mouseX > 200 && mouseX < 300 && mouseY > 30 && mouseY < 100) {
-    console.log("move left");
     wheel1x -= offset;
     wheel2x -= offset;
     rectx -= offset;
 
-    PinkButtonLeft();
+    leftButtonColor = pink;
   } else {
-    YellowButtonLeft();
+    leftButtonColor = yellow;
   }
 }
 
 //WHEN MOUSE HOVERS OVER RIGHT ARROW, MOVE RIGHT
 function moveRight() {
   if (mouseX > 300 && mouseX < 400 && mouseY > 30 && mouseY < 100) {
-    console.log("move right");
     wheel1x += offset;
     wheel2x += offset;
     rectx += offset;
 
-    PinkButtonRight();
+    rightButtonColor = pink;
   } else {
-    YellowButtonRight();
+    rightButtonColor = yellow;
   }
 }
 
-function PinkButtonLeft() {
-  fill(255, 0, 175);
+function drawLeftButton() {
+  fill(leftButtonColor);
   rect(200, 30, 100, 60);
+  drawLeftArrow();
+}
+
+function drawRightButton() {
+  fill(rightButtonColor);
+  rect(300, 30, 100, 60);
+  drawRightArrow();
+}
+
+function drawLeftArrow() {
   fill(0);
   triangle(222, 60, 244, 47, 244, 76);
   rect(244, 56, 25, 10);
 }
 
-function YellowButtonLeft() {
-  fill(234, 255, 0);
-  rect(200, 30, 100, 60);
-  fill(0);
-  triangle(222, 60, 244, 47, 244, 76);
-  rect(244, 56, 25, 10);
-}
-
-function PinkButtonRight() {
-  fill(255, 0, 175);
-  rect(300, 30, 100, 60);
-  fill(0);
-  triangle(374, 60, 356, 47, 356, 76);
-  rect(331, 56, 25, 10);
-}
-
-function YellowButtonRight() {
-  fill(234, 255, 0);
-  rect(300, 30, 100, 60);
-
+function drawRightArrow() {
   fill(0);
   triangle(374, 60, 356, 47, 356, 76);
   rect(331, 56, 25, 10);
